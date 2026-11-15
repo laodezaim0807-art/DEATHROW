@@ -1,0 +1,455 @@
+{
+  "schemaVersion": 2,
+  "users": [
+    {
+      "id": "usr-admin-yahya",
+      "name": "Yahya",
+      "email": "yahya@satria.demo",
+      "password": "SatriaAdmin2026!",
+      "role": "admin",
+      "organization": "Komando Siber Sosial (Admin Pusat)"
+    },
+    {
+      "id": "usr-analyst-zaim",
+      "name": "Zaim",
+      "email": "zaim@satria.demo",
+      "password": "SatriaAnalyst2026!",
+      "role": "analyst",
+      "organization": "Unit Verifikasi & Analis Siber Sosial"
+    }
+  ],
+  "phishingAnalyses": [
+    {
+      "id": "ph-demo-01",
+      "createdAt": "2026-11-15T10:58:19.632Z",
+      "analystName": "Yahya (Demo Admin)",
+      "inputType": "combined",
+      "urlInput": "https://bit.ly/beasiswa-komunitas-2026",
+      "messageInput": "INFO RESMI CHANNEL: Kuota beasiswa mahasiswa semester aktif tersisa 18 orang. Kirim foto KTM, KTP, dan kode verifikasi WhatsApp ke admin channel Telegram sebelum jam 21.00 WIB.",
+      "riskScore": 92,
+      "riskCategory": "Tinggi",
+      "ruleScore": 86,
+      "aiScore": 96,
+      "indicators": [
+        {
+          "code": "URL_SHORTENER",
+          "label": "Tautan perantara di pesan broadcast Telegram",
+          "severity": "Sedang",
+          "source": "Aturan Heuristik",
+          "detail": "Pemendek tautan bit.ly menyamarkan halaman tujuan akhir pengumpulan data."
+        },
+        {
+          "code": "SOCIAL_URGENCY_TRIGGER",
+          "label": "Desakan kuota terbatas & batas waktu ketat",
+          "severity": "Tinggi",
+          "source": "Aturan Heuristik",
+          "detail": "Klaim \"tersisa 18 orang\" dan \"sebelum jam 21.00\" memicu FOMO agar korban tergesa-gesa."
+        },
+        {
+          "code": "IDENTITY_HARVESTING_DM",
+          "label": "Permintaan foto KTP/KTM dan kode verifikasi via DM",
+          "severity": "Tinggi",
+          "source": "Analisis AI Gemini",
+          "detail": "Lembaga akademik resmi tidak pernah meminta dokumen identitas dan kode OTP melalui DM Telegram."
+        }
+      ],
+      "explanation": "Pesan menggunakan modus impersonasi pengelola beasiswa di grup/channel Telegram untuk memanen data identitas (KTP/KTM) dan membajak akun WhatsApp/Telegram korban.",
+      "safetyCaveat": "Catatan Verifikasi Siber Sosial: Selalu konfirmasi informasi beasiswa atau bantuan melalui kanal media sosial bercentang verifikasi dan situs resmi .ac.id.",
+      "recommendations": [
+        "Laporkan channel Telegram penyebar ke fitur Report Scam & Impersonation platform.",
+        "Terbitkan poster klarifikasi singkat di Instagram Stories dan grup mahasiswa resmi.",
+        "Edukasi komunitas agar tidak membagikan foto identitas maupun kode verifikasi di DM."
+      ],
+      "pillar": "Rekayasa Sosial & Impersonasi",
+      "isDemo": true
+    },
+    {
+      "id": "ph-demo-02",
+      "createdAt": "2026-11-15T01:58:19.632Z",
+      "analystName": "Zaim (Demo Analyst)",
+      "inputType": "combined",
+      "urlInput": "http://klaim-giveaway-umkm.xyz/hadiah-viral",
+      "messageInput": "Selamat! Akun Instagram UMKM Anda terpilih menerima dana pembinaan Rp10 juta dari program viral TikTok. Klik link di bio sekarang sebelum hangus!",
+      "riskScore": 84,
+      "riskCategory": "Tinggi",
+      "ruleScore": 78,
+      "aiScore": 89,
+      "indicators": [
+        {
+          "code": "HTTP_NO_TLS",
+          "label": "Tautan bio mengarah ke HTTP tanpa enkripsi",
+          "severity": "Tinggi",
+          "source": "Aturan Heuristik",
+          "detail": "Domain hadiah menggunakan protokol http:// dengan TLD .xyz."
+        },
+        {
+          "code": "GIVEAWAY_IMPERSONATION",
+          "label": "Umpan giveaway palsu menyasar akun bisnis UMKM",
+          "severity": "Tinggi",
+          "source": "Analisis AI Gemini",
+          "detail": "Komentar dan DM hadiah fiktif sering dipakai untuk mengambil alih akun Instagram toko."
+        }
+      ],
+      "explanation": "Pola komentar/DM menargetkan akun Instagram pelaku UMKM dengan iming-iming dana pembinaan untuk mencuri akses login akun bisnis atau meminta biaya administrasi.",
+      "safetyCaveat": "Jangan pernah memasukkan kredensial akun media sosial Anda pada tautan eksternal dari DM hadiah.",
+      "recommendations": [
+        "Aktifkan autentikasi dua faktor (2FA) berbasis aplikasi autentikator pada akun Instagram & TikTok bisnis.",
+        "Sembunyikan atau hapus komentar spam giveaway berulang pada kolom komentar unggahan.",
+        "Verifikasi setiap program hibah langsung melalui kanal resmi kementerian atau dinas terkait."
+      ],
+      "pillar": "Rekayasa Sosial & Impersonasi",
+      "isDemo": true
+    },
+    {
+      "id": "ph-demo-03",
+      "createdAt": "2026-11-14T12:58:19.632Z",
+      "analystName": "Zaim (Demo Analyst)",
+      "inputType": "url",
+      "urlInput": "https://instagram.com/kemdikbud.ri",
+      "messageInput": "Silakan simak panduan literasi digital dan keamanan ruang siber sosial melalui sorotan akun resmi kami.",
+      "riskScore": 14,
+      "riskCategory": "Rendah",
+      "ruleScore": 8,
+      "aiScore": 19,
+      "indicators": [
+        {
+          "code": "NO_OBVIOUS_LURE",
+          "label": "Tidak ditemukan pola rekayasa sosial agresif pada teks",
+          "severity": "Rendah",
+          "source": "Aturan Heuristik",
+          "detail": "Teks bersifat informatif tanpa permintaan OTP, identitas, ataupun desakan waktu."
+        }
+      ],
+      "explanation": "Struktur pesan dan tautan merujuk pada platform media sosial utama tanpa pola ancaman atau bujukan data pribadi. Tetap pastikan tanda centang verifikasi pada profil tujuan.",
+      "safetyCaveat": "Catatan Verifikasi Siber Sosial: Ketiadaan indikator mencurigakan tidak menjamin akun bebas dari tiruan (typosquatting handle). Periksa ejaan handle akun secara teliti.",
+      "recommendations": [
+        "Pastikan ejaan handle profil sama persis dengan tautan resmi di situs web lembaga.",
+        "Hindari membagikan data sensitif melalui pesan langsung meskipun akun tampak kredibel."
+      ],
+      "pillar": "Analisis Narasi & Sentimen",
+      "isDemo": true
+    }
+  ],
+  "socialAnalyses": [
+    {
+      "id": "soc-demo-01",
+      "createdAt": "2026-11-15T08:58:19.632Z",
+      "analystName": "Zaim (Demo Analyst)",
+      "sourcePlatform": "TikTok (Video / Caption / Komentar)",
+      "sourceUrl": "https://tiktok.com/@suara_dagang_viral/video/88210",
+      "inputText": "KABAR DARURAT!! Mulai besok semua pedagang kecil yang pakai QRIS bakal kena potongan otomatis 18% dan rekening dibekukan kalau tidak daftar ulang di link bio malam ini! Sebarkan ke semua grup dagang sebelum terlambat!!",
+      "sentiment": "Negatif",
+      "sentimentScores": {
+        "positif": 3,
+        "negatif": 86,
+        "netral": 11
+      },
+      "classification": "Klaim Sensasional & Pemicu Kepanikan Komunitas",
+      "verificationIndicators": [
+        "Menggunakan kalimat perintah mendesak (\"sebelum terlambat\", \"sebarkan ke semua grup\").",
+        "Mencantumkan angka potongan sepihak (18%) tanpa rujukan peraturan Bank Indonesia atau siaran pers resmi.",
+        "Mengarahkan audiens ke tautan anonim di profil (\"link bio\") untuk pendaftaran ulang."
+      ],
+      "narrativeAnalysis": "Narasi memanfaatkan kekhawatiran ekonomi pelaku UMKM terhadap transaksi digital (QRIS) untuk menciptakan kepanikan kolektif sehingga audiens membagikan ulang konten sebelum sempat memverifikasi fakta.",
+      "factCheckRecommendations": [
+        "Periksa kanal resmi Bank Indonesia, ASPI, dan OJK terkait ketentuan biaya MDR QRIS terkini.",
+        "Telusuri klaim serupa pada indeks CekFakta / TurnBackHoax sebelum memberikan klarifikasi publik.",
+        "Siapkan infografis bantahan singkat untuk dibagikan di komunitas pedagang terdampak."
+      ],
+      "confidenceLevel": 85,
+      "analysisLimitations": "Analisis ini hanya mengevaluasi satu teks masukan tanpa akses verifikasi real-time ke basis data regulasi eksternal. Hasil tidak dapat digunakan sebagai vonis final hoaks tanpa konfirmasi sumber resmi.",
+      "pillar": "Disinformasi & Hoaks",
+      "isDemo": true
+    },
+    {
+      "id": "soc-demo-02",
+      "createdAt": "2026-11-15T03:58:19.632Z",
+      "analystName": "Yahya (Demo Admin)",
+      "sourcePlatform": "X / Twitter",
+      "sourceUrl": "https://x.com/pantau_kampus_id/status/1902841",
+      "inputText": "Dalam 30 menit terakhir muncul 140+ balasan bernada provokatif dengan struktur kalimat identik dari akun-akun baru tanpa foto profil yang menyerukan boikot layanan pendaftaran kampus.",
+      "sentiment": "Negatif",
+      "sentimentScores": {
+        "positif": 4,
+        "negatif": 79,
+        "netral": 17
+      },
+      "classification": "Indikasi Amplifikasi Terkoordinasi (Bot / Buzzer)",
+      "verificationIndicators": [
+        "Keseragaman frasa dan pola waktu unggahan dalam rentang sempit (30 menit).",
+        "Profil akun pengunggah menunjukkan karakteristik akun baru dengan riwayat interaksi minim.",
+        "Tujuan narasi mengarah pada penurunan kepercayaan publik terhadap layanan kampus."
+      ],
+      "narrativeAnalysis": "Pola penyebaran menunjukkan ciri amplifikasi buatan untuk membentuk persepsi seolah-olah terdapat penolakan massal organik dari mahasiswa.",
+      "factCheckRecommendations": [
+        "Dokumentasikan sampel handle akun dan stempel waktu unggahan sebagai bukti awal.",
+        "Bandingkan sentimen balasan terkoordinasi dengan kanal umpan balik mahasiswa terverifikasi.",
+        "Hindari merespons secara emosional; sampaikan pembaruan faktual layanan secara transparan."
+      ],
+      "confidenceLevel": 78,
+      "analysisLimitations": "Analisis teks tunggal tidak mengakses grafik jejaring pengikut penuh secara langsung; penilaian koordinasi akun memerlukan audit metadata lanjutan.",
+      "pillar": "Operasi Kognitif & Bot",
+      "isDemo": true
+    },
+    {
+      "id": "soc-demo-03",
+      "createdAt": "2026-11-13T12:58:19.632Z",
+      "analystName": "Yahya (Demo Admin)",
+      "sourcePlatform": "YouTube (Video / Komentar / Deskripsi)",
+      "sourceUrl": "https://youtube.com/watch?v=literasi_siber_2026",
+      "inputText": "Forum literasi digital mahasiswa dan pelaku UMKM sukses mengajak 420 peserta mengenali teknik rekayasa sosial, verifikasi sumber berita, dan pengamanan akun media sosial.",
+      "sentiment": "Positif",
+      "sentimentScores": {
+        "positif": 81,
+        "negatif": 3,
+        "netral": 16
+      },
+      "classification": "Narasi Edukasi & Ketahanan Siber Sosial",
+      "verificationIndicators": [
+        "Angka peserta (420 peserta) dan penyelenggara forum dapat dikonfirmasi melalui siaran pers resmi.",
+        "Nada penyampaian netral-informatif tanpa ajakan tautan eksternal mencurigakan."
+      ],
+      "narrativeAnalysis": "Narasi mendukung penguatan literasi informasi publik dan mendorong kewaspadaan kolektif di ruang media sosial.",
+      "factCheckRecommendations": [
+        "Arsipkan tautan video dan dokumentasi acara sebagai rujukan kampanye literasi berikutnya."
+      ],
+      "confidenceLevel": 89,
+      "analysisLimitations": "Evaluasi berbasis teks tunggal; keakuratan detail angka peserta dan waktu pelaksanaan tetap memerlukan konfirmasi laporan kegiatan resmi.",
+      "pillar": "Analisis Narasi & Sentimen",
+      "isDemo": true
+    }
+  ],
+  "securityLogs": [
+    {
+      "id": "log-mwhublod-ez67p",
+      "timestamp": "2026-11-15T12:58:19.645Z",
+      "category": "Autentikasi",
+      "severity": "Rendah",
+      "actor": "zaim@satria.demo",
+      "ipAddress": "127.0.0.1",
+      "event": "Login berhasil sebagai ANALYST (Zaim)",
+      "status": "Berhasil",
+      "pillar": "Analisis Narasi & Sentimen",
+      "sourceType": "APP LOG"
+    },
+    {
+      "id": "log-mwhublo0-7s0a1",
+      "timestamp": "2026-11-15T12:58:19.632Z",
+      "category": "Autentikasi",
+      "severity": "Rendah",
+      "actor": "yahya@satria.demo",
+      "ipAddress": "127.0.0.1",
+      "event": "Login berhasil sebagai ADMIN (Yahya)",
+      "status": "Berhasil",
+      "pillar": "Analisis Narasi & Sentimen",
+      "sourceType": "APP LOG"
+    },
+    {
+      "id": "log-demo-01",
+      "timestamp": "2026-11-15T11:58:19.632Z",
+      "category": "Siber Sosial",
+      "severity": "Tinggi",
+      "actor": "Detektor Tren X / TikTok",
+      "ipAddress": "10.42.18.10",
+      "event": "Lonjakan 140+ komentar seragam terdeteksi pada topik layanan kampus (Indikasi Amplifikasi Bot)",
+      "status": "Peringatan",
+      "pillar": "Operasi Kognitif & Bot",
+      "sourceType": "DEMO"
+    },
+    {
+      "id": "log-demo-02",
+      "timestamp": "2026-11-15T10:58:19.632Z",
+      "category": "Rekayasa Sosial",
+      "severity": "Tinggi",
+      "actor": "Yahya (Demo Admin)",
+      "ipAddress": "192.168.10.24",
+      "event": "Deteksi umpan beasiswa Telegram skor risiko 92/100 (bit.ly/beasiswa-komunitas-2026)",
+      "status": "Peringatan",
+      "pillar": "Rekayasa Sosial & Impersonasi",
+      "sourceType": "DEMO"
+    },
+    {
+      "id": "log-demo-03",
+      "timestamp": "2026-11-15T08:58:19.632Z",
+      "category": "Disinformasi",
+      "severity": "Sedang",
+      "actor": "Zaim (Demo Analyst)",
+      "ipAddress": "192.168.10.31",
+      "event": "Analisis video viral TikTok klaim potongan QRIS 18% ditandai perlu klarifikasi resmi",
+      "status": "Peringatan",
+      "pillar": "Disinformasi & Hoaks",
+      "sourceType": "DEMO"
+    },
+    {
+      "id": "log-demo-04",
+      "timestamp": "2026-11-15T05:58:19.632Z",
+      "category": "Autentikasi",
+      "severity": "Rendah",
+      "actor": "yahya@satria.demo",
+      "ipAddress": "10.20.4.15",
+      "event": "Login konsol Siber Sosial berhasil sebagai ADMIN (Yahya)",
+      "status": "Berhasil",
+      "pillar": "Analisis Narasi & Sentimen",
+      "sourceType": "DEMO"
+    },
+    {
+      "id": "log-demo-05",
+      "timestamp": "2026-11-15T02:58:19.632Z",
+      "category": "Rekayasa Sosial",
+      "severity": "Tinggi",
+      "actor": "Akun Tiruan @humas.kampus_official",
+      "ipAddress": "182.253.91.14",
+      "event": "Laporan masuk: akun tiruan Instagram mengirim DM giveaway dan permintaan OTP ke 9 mahasiswa",
+      "status": "Diblokir",
+      "pillar": "Rekayasa Sosial & Impersonasi",
+      "sourceType": "DEMO"
+    },
+    {
+      "id": "log-demo-06",
+      "timestamp": "2026-11-14T12:58:19.632Z",
+      "category": "Investigasi Kasus",
+      "severity": "Rendah",
+      "actor": "Zaim (Demo Analyst)",
+      "ipAddress": "192.168.10.31",
+      "event": "Ekspor arsip bukti tangkapan unggahan untuk laporan mingguan Siber Sosial",
+      "status": "Berhasil",
+      "pillar": "Disinformasi & Hoaks",
+      "sourceType": "DEMO"
+    }
+  ],
+  "incidents": [
+    {
+      "id": "inc-demo-01",
+      "code": "SOC-2026-001",
+      "title": "Penyebaran Narasi Hoaks Pembekuan Rekening & Potongan QRIS UMKM di TikTok",
+      "description": "Beredar video singkat dan pesan berantai WhatsApp yang mengklaim seluruh rekening pedagang UMKM akan dipotong 18% dan dibekukan jika tidak mendaftar ulang lewat tautan bio tidak resmi.",
+      "pillar": "Disinformasi & Hoaks",
+      "severity": "Tinggi",
+      "status": "Sedang Diinvestigasi",
+      "affectedAsset": "Komunitas Pelaku UMKM & Grup WhatsApp Pedagang",
+      "reporter": "Asosiasi UMKM Mitra",
+      "assignedTo": "Zaim (Demo Analyst)",
+      "createdAt": "2026-11-14T20:58:19.632Z",
+      "updatedAt": "2026-11-15T10:58:19.632Z",
+      "evidence": [
+        {
+          "id": "ev-demo-01",
+          "label": "Tautan Video Viral Sumber Klaim",
+          "evidenceType": "Tautan / Akun Sosial",
+          "value": "https://tiktok.com/@suara_dagang_viral/video/88210",
+          "collectedBy": "Zaim (Demo Analyst)",
+          "collectedAt": "2026-11-14T21:58:19.632Z"
+        },
+        {
+          "id": "ev-demo-02",
+          "label": "Tangkapan Pesan Berantai WhatsApp",
+          "evidenceType": "Tangkapan Unggahan",
+          "value": "Arsip teks broadcast grup pedagang: \"KABAR DARURAT!! Potongan otomatis QRIS 18%...\"",
+          "collectedBy": "Yahya (Demo Admin)",
+          "collectedAt": "2026-11-15T02:58:19.632Z"
+        }
+      ],
+      "timeline": [
+        {
+          "id": "tl-demo-01",
+          "timestamp": "2026-11-14T20:58:19.632Z",
+          "actor": "Asosiasi UMKM Mitra",
+          "action": "Laporan Disinformasi Masuk",
+          "notes": "12 pelaku usaha menanyakan kebenaran pesan berantai pemotongan QRIS 18%."
+        },
+        {
+          "id": "tl-demo-02",
+          "timestamp": "2026-11-15T00:58:19.632Z",
+          "actor": "Zaim (Demo Analyst)",
+          "action": "Analisis Narasi & Cek Fakta Awal",
+          "notes": "Sentimen Negatif 86%, tidak ditemukan rujukan kebijakan resmi Bank Indonesia."
+        },
+        {
+          "id": "tl-demo-03",
+          "timestamp": "2026-11-15T07:58:19.632Z",
+          "actor": "Yahya (Demo Admin)",
+          "action": "Penerbitan Materi Klarifikasi",
+          "notes": "Grafis verifikasi fakta didistribusikan ke kanal resmi komunitas dan mitra UMKM."
+        }
+      ],
+      "aiSummary": "Ringkasan Kasus Siber Sosial (DEMO): Narasi sensasional di TikTok dan WhatsApp memanfaatkan kekhawatiran pelaku UMKM terkait QRIS untuk menggiring klik ke tautan tidak resmi. Zaim telah mengumpulkan bukti unggahan dan melakukan cek fakta awal, sedangkan Yahya telah mengoordinasikan distribusi klarifikasi resmi.",
+      "aiSummaryGeneratedAt": "2026-11-15T08:58:19.632Z",
+      "isDemo": true
+    },
+    {
+      "id": "inc-demo-02",
+      "code": "SOC-2026-002",
+      "title": "Impersonasi Akun Instagram Resmi & DM Umpan Beasiswa Telegram",
+      "description": "Akun tiruan menggunakan foto profil dan nama menyerupai humas kampus mengirimkan DM serta mengarahkan mahasiswa ke channel Telegram yang meminta foto KTM dan kode OTP.",
+      "pillar": "Rekayasa Sosial & Impersonasi",
+      "severity": "Kritis",
+      "status": "Terkendali",
+      "affectedAsset": "Akun Resmi Instagram & Mahasiswa Baru",
+      "reporter": "Tim Humas & Kemahasiswaan",
+      "assignedTo": "Yahya (Demo Admin)",
+      "createdAt": "2026-11-13T12:58:19.632Z",
+      "updatedAt": "2026-11-15T04:58:19.632Z",
+      "evidence": [
+        {
+          "id": "ev-demo-03",
+          "label": "Handle Akun Tiruan Instagram",
+          "evidenceType": "Tautan / Akun Sosial",
+          "value": "@humas.kampus_official (ID tiruan) -> mengarah ke https://bit.ly/beasiswa-komunitas-2026",
+          "collectedBy": "Yahya (Demo Admin)",
+          "collectedAt": "2026-11-13T12:58:19.632Z"
+        }
+      ],
+      "timeline": [
+        {
+          "id": "tl-demo-04",
+          "timestamp": "2026-11-13T12:58:19.632Z",
+          "actor": "Tim Humas",
+          "action": "Deteksi Akun Impersonator",
+          "notes": "Mahasiswa melaporkan DM mencurigakan yang mengatasnamakan program beasiswa."
+        },
+        {
+          "id": "tl-demo-05",
+          "timestamp": "2026-11-15T04:58:19.632Z",
+          "actor": "Yahya (Demo Admin)",
+          "action": "Pelaporan Takedown & Peringatan Publik",
+          "notes": "Pelaporan impersonasi diajukan ke Meta dan Telegram; peringatan resmi tayang di feed."
+        }
+      ],
+      "aiSummary": "Ringkasan Kasus Siber Sosial (DEMO): Kampanye impersonasi akun humas kampus melalui DM Instagram dan channel Telegram berhasil diidentifikasi dan dilaporkan untuk penangguhan. Peringatan anti-rekayasa sosial telah diterbitkan kepada mahasiswa.",
+      "aiSummaryGeneratedAt": "2026-11-15T04:58:19.632Z",
+      "isDemo": true
+    }
+  ],
+  "notifications": [
+    {
+      "id": "notif-demo-01",
+      "title": "Indikasi Amplifikasi Bot di Platform X",
+      "message": "Terdeteksi 140+ balasan seragam dalam 30 menit pada isu layanan publik.",
+      "severity": "Tinggi",
+      "category": "Siber Sosial",
+      "createdAt": "2026-11-15T11:58:19.632Z",
+      "read": false,
+      "isDemo": true
+    },
+    {
+      "id": "notif-demo-02",
+      "title": "Umpan Rekayasa Sosial Telegram (Skor 92/100)",
+      "message": "Tautan bit.ly/beasiswa-komunitas-2026 meminta foto KTM & kode verifikasi via DM.",
+      "severity": "Tinggi",
+      "category": "Rekayasa Sosial",
+      "createdAt": "2026-11-15T10:58:19.632Z",
+      "read": false,
+      "isDemo": true
+    },
+    {
+      "id": "notif-demo-03",
+      "title": "Klaim Viral QRIS TikTok Perlu Klarifikasi",
+      "message": "Analisis Zaim menandai sentimen negatif 86% pada narasi pembekuan rekening UMKM.",
+      "severity": "Sedang",
+      "category": "Disinformasi",
+      "createdAt": "2026-11-15T08:58:19.632Z",
+      "read": true,
+      "isDemo": true
+    }
+  ]
+}

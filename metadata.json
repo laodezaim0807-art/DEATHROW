@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix SATRIA CYBER AI",
+  "description": "Sistem Analisis, Deteksi, dan Respons Terpadu Ancaman Siber Berbasis Artificial Intelligence untuk kampus, UMKM, dan organisasi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
